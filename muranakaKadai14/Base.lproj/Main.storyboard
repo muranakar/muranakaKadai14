@@ -110,7 +110,7 @@
                                 <action selector="cancel:" destination="gAk-x4-AmM" id="uaZ-B6-KXR"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="sZx-qb-HHF">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="sZx-qb-HHF">
                             <connections>
                                 <action selector="addFruit:" destination="gAk-x4-AmM" id="yMR-hT-5bf"/>
                             </connections>
