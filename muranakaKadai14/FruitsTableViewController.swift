@@ -33,17 +33,37 @@ class FruitsTableViewController: UITableViewController {
     }
 
     @IBAction private func addFruit(segue: UIStoryboardSegue) {
-        let addVC = segue.source as! AddFruitViewController  // swiftlint:disable:this force_cast
-        guard let text = addVC.text else { return }
-        guard !text.isEmpty else { return }
-        fruits.append(Fruit(name: text, isCheck: false))
-
-        tableView.insertRows(
-            at: [IndexPath.init(row: fruits.count - 1, section: 0)],
-            with: .top
-        )
     }
 
     @IBAction private func cancel(segue: UIStoryboardSegue) {
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let identifier = segue.identifier else { return }
+        
+        switch identifier {
+        case "AddSegue":
+            let nav = segue.destination as! UINavigationController
+            let addVC = nav.topViewController as! AddFruitViewController
+            addVC.onViewDidDisappear = { [weak self] result in
+                guard let strongSelf = self else { return }
+                
+                switch result {
+                case .save(let name):
+                    guard !name.isEmpty else { return }
+                    
+                    strongSelf.fruits.append(Fruit(name: name, isCheck: false))
+
+                    strongSelf.tableView.insertRows(
+                        at: [IndexPath(row: strongSelf.fruits.count - 1, section: 0)],
+                        with: .top
+                    )
+                case .cancel:
+                    break
+                }
+            }
+        default:
+            break
+        }
     }
 }
