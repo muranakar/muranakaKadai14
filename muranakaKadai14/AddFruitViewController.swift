@@ -8,16 +8,30 @@
 import UIKit
 
 class AddFruitViewController: UIViewController {
+    enum Result {
+        case save(String)
+        case cancel
+    }
+    
     @IBOutlet weak private var fruitTextField: UITextField!
-    // 次回以降で、編集機能があると思いましたので、varで定義しました。
-    private(set) var text: String?
+    
+    private var result: Result?
+    
+    var onViewDidDisappear: (Result) -> Void = { _ in }
 
     @IBAction private func addFruit(_ sender: Any) {
-        text = fruitTextField.text
+        result = .save(fruitTextField.text ?? "")
         performSegue(withIdentifier: "addSegue", sender: nil)
     }
 
     @IBAction private func cancel(_ sender: Any) {
+        result = .cancel
         performSegue(withIdentifier: "cancelSegue", sender: nil)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        guard let result = result else { return }
+        onViewDidDisappear(result)
     }
 }

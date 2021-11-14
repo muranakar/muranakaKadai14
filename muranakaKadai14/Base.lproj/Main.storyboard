@@ -52,7 +52,7 @@
                     <navigationItem key="navigationItem" id="rgE-Z6-yOI">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Vlv-R3-thM">
                             <connections>
-                                <segue destination="pf4-PX-6QT" kind="presentation" modalPresentationStyle="fullScreen" id="30c-ax-WgG"/>
+                                <segue destination="pf4-PX-6QT" kind="presentation" identifier="AddSegue" modalPresentationStyle="fullScreen" id="30c-ax-WgG"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -110,7 +110,7 @@
                                 <action selector="cancel:" destination="gAk-x4-AmM" id="uaZ-B6-KXR"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="sZx-qb-HHF">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="sZx-qb-HHF">
                             <connections>
                                 <action selector="addFruit:" destination="gAk-x4-AmM" id="yMR-hT-5bf"/>
                             </connections>
